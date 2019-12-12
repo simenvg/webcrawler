@@ -3,7 +3,6 @@ import requests
 import queue
 import logging
 import os
-import signal
 from bs4 import BeautifulSoup
 import time
 
@@ -18,8 +17,7 @@ class Scraper:
         self.local_urls = manager.list()
         self.foreign_urls = manager.list()
         self.broken_urls = manager.list()
-        self.url_queue = manager.list()
-        # self.url_queue = multiprocessing.Queue()
+        self.url_queue = multiprocessing.Queue()
         self.logger = self.create_logger()
         self.initialize()
 
@@ -54,31 +52,8 @@ class Scraper:
                 self.find_links(url)
             except:
                 print("Could not get from queue")
-                os.kill(proc, signal.SIGTERM)
-                break
+                return
         print("threadStopped")
-
-    def scrape(self, url):
-        #logger = multiprocessing.get_logger()
-        print("THREAD")
-        self.logger.info("QUEUELENGTH:  " + str(len(url_queue)))
-        proc = os.getpid()
-        #print(url_queue.get())
-        
-        while not url_queue.empty():
-            #print("QUEUELENGTH:  " + str(url_queue.qsize()))
-            try:
-                url = url_queue.get()   
-                while (url in self.processed_urls):
-                    url = url_queue.get()
-                self.logger.info(str(proc) + ", url: " + url)  
-                self.find_links(url)
-            except:
-                print("Could not get from queue")
-                os.kill(proc, signal.SIGTERM)
-                break
-        print("threadStopped")
-        
         
 
     def find_links(self, url):
@@ -92,9 +67,8 @@ class Scraper:
         links = self.get_all_links_on_page(res.text)
         self.filter_links(links)
         #print(links)
-        #proc = os.getpid()
+        proc = os.getpid()
         self.add_elem_if_not_in_list(self.processed_urls, url)
-        
         #print(self.processed_urls)
 
 
@@ -128,35 +102,30 @@ class Scraper:
                 # print(str(proc) + "   " + elem)
                 # print(str(proc) + "   " + str(self.processed_urls))
                 # print("#####################################")
-                self.url_queue.append(elem)
+                self.url_queue.put(elem)
             if elem not in self.local_urls:
                 self.local_urls.append(elem)
 
     def start_worker_threads(self):
-        p = multiprocessing.Pool(7)
-        p.map(self.find_links, self.url_queue)
-
-
-
-
-        # print("Start")
-        # processes = []
-        # #print("HEI:  " + self.url_queue)
-        # for n in range(10):
-        #     p = multiprocessing.Process(target=self.scrape, args=(self.url_queue,))
-        #     # p.daemon = True
-        #     processes.append(p)
-        #     p.start()
-        # try:
+        
+        print("Start")
+        processes = []
+        #print("HEI:  " + self.url_queue)
+        for n in range(10):
+            p = multiprocessing.Process(target=self.scrape, args=(self.url_queue,))
+            # p.daemon = True
+            processes.append(p)
+            p.start()
+        try:
             
-        #     for p in processes:
-        #         print("Joining proc: " + str(p))
-        #         p.join()
-        #         p.terminate()
-        # except KeyboardInterrupt:
-        #     for p in processes:
-        #         p.terminate()
-        #         p.join()
+            for p in processes:
+                
+                p.join()
+                p.terminate()
+        except KeyboardInterrupt:
+            for p in processes:
+                p.terminate()
+                p.join()
         # p = Pool(10)
         # p.map(self.scrape, self.url_queue) 
         # p.terminate()
