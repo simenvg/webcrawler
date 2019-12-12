@@ -19,8 +19,8 @@ class Scraper:
         self.url_queue = multiprocessing.Queue()
         self.logger = self.create_logger()
         self.initialize()
-        self.max_requests_per_second = 30
-        self.num_threads = 10
+        self.max_requests_per_second = 100
+        self.num_threads = 7
 
 
     def initialize(self):
@@ -41,6 +41,8 @@ class Scraper:
         print("Thread: " + str(proc) +" started")
         proc = os.getpid()
         while True:
+            print("processed urls: " + str(len(self.processed_urls)))
+            print("unprocessed urls: " + str(self.url_queue.qsize()))
             time.sleep(self.num_threads / self.max_requests_per_second)
             try:
                 url = url_queue.get_nowait()
@@ -58,14 +60,16 @@ class Scraper:
 
     def find_links(self, url):
         try:
+            # Add time restriction here?
             res = requests.get(url)
-        except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError, requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema):
+        except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError, requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema, requests.exceptions.TooManyRedirects):
+            print("BROKEN URL")
             self.add_elem_if_not_in_list(self.broken_urls, url)
             self.add_elem_if_not_in_list(self.processed_urls, url)
-            return
-        links = self.get_all_links_on_page(res.text)
-        self.filter_links(links)
-        self.add_elem_if_not_in_list(self.processed_urls, url)
+        else:
+            links = self.get_all_links_on_page(res.text)
+            self.filter_links(links, url)
+            self.add_elem_if_not_in_list(self.processed_urls, url)
 
 
     def add_elem_if_not_in_list(self, lst, elem):
@@ -80,12 +84,13 @@ class Scraper:
                 links.append(link.get("href"))
         return links
         
-    def filter_links(self, links):
+    def filter_links(self, links, url):
         new_local_links = []
         for link in links:
             link_str = str(link)
             if link_str.startswith("/"):
-                new_local_links.append(self.base_url+link_str)
+                #Should be url, and not baseurl
+                new_local_links.append(url+link_str)
             elif link_str.startswith(self.base_url):
                 new_local_links.append(link_str)
             else:
@@ -116,7 +121,7 @@ class Scraper:
 
 
 if __name__ == '__main__':    
-    scraper = Scraper('http://quotes.toscrape.com')
+    scraper = Scraper('https://crawler-test.com/')
     print("HEI")
     t0 = time.time()
     scraper.start_worker_threads()
