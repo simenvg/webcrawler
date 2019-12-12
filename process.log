@@ -1,0 +1,458 @@
+2019-12-12 10:05:13,319 - INFO - process shutting down
+2019-12-12 10:11:06,902 - INFO - process shutting down
+2019-12-12 10:11:06,914 - INFO - sending shutdown message to manager
+2019-12-12 10:11:44,867 - INFO - process shutting down
+2019-12-12 10:11:44,869 - INFO - sending shutdown message to manager
+2019-12-12 11:08:18,143 - INFO - process shutting down
+2019-12-12 11:08:18,148 - INFO - sending shutdown message to manager
+2019-12-12 11:14:05,423 - INFO - process shutting down
+2019-12-12 11:14:05,434 - INFO - sending shutdown message to manager
+2019-12-12 11:14:05,485 - INFO - calling terminate() for daemon Process-5
+2019-12-12 11:14:05,486 - INFO - calling terminate() for daemon Process-6
+2019-12-12 11:14:05,486 - INFO - calling terminate() for daemon Process-2
+2019-12-12 11:14:05,487 - INFO - calling terminate() for daemon Process-4
+2019-12-12 11:14:05,487 - INFO - calling terminate() for daemon Process-3
+2019-12-12 11:14:05,487 - INFO - calling join() for process Process-5
+2019-12-12 11:14:05,520 - INFO - calling join() for process Process-6
+2019-12-12 11:14:05,521 - INFO - calling join() for process Process-2
+2019-12-12 11:14:05,521 - INFO - calling join() for process Process-4
+2019-12-12 11:14:05,521 - INFO - calling join() for process Process-3
+2019-12-12 11:14:18,611 - INFO - process shutting down
+2019-12-12 11:14:18,618 - INFO - sending shutdown message to manager
+2019-12-12 11:14:18,698 - INFO - calling terminate() for daemon Process-5
+2019-12-12 11:14:18,698 - INFO - calling terminate() for daemon Process-6
+2019-12-12 11:14:18,699 - INFO - calling terminate() for daemon Process-4
+2019-12-12 11:14:18,699 - INFO - calling terminate() for daemon Process-2
+2019-12-12 11:14:18,699 - INFO - calling terminate() for daemon Process-3
+2019-12-12 11:14:18,700 - INFO - calling join() for process Process-5
+2019-12-12 11:14:18,737 - INFO - calling join() for process Process-6
+2019-12-12 11:14:18,743 - INFO - calling join() for process Process-4
+2019-12-12 11:14:18,743 - INFO - calling join() for process Process-2
+2019-12-12 11:14:18,743 - INFO - calling join() for process Process-3
+2019-12-12 11:15:51,223 - INFO - process shutting down
+2019-12-12 11:15:51,276 - INFO - sending shutdown message to manager
+2019-12-12 11:15:51,347 - INFO - calling terminate() for daemon Process-5
+2019-12-12 11:15:51,347 - INFO - calling terminate() for daemon Process-2
+2019-12-12 11:15:51,348 - INFO - calling terminate() for daemon Process-6
+2019-12-12 11:15:51,348 - INFO - calling terminate() for daemon Process-3
+2019-12-12 11:15:51,349 - INFO - calling terminate() for daemon Process-4
+2019-12-12 11:15:51,349 - INFO - calling join() for process Process-5
+2019-12-12 11:15:51,367 - INFO - calling join() for process Process-2
+2019-12-12 11:15:51,370 - INFO - calling join() for process Process-6
+2019-12-12 11:15:51,373 - INFO - calling join() for process Process-3
+2019-12-12 11:15:51,373 - INFO - calling join() for process Process-4
+2019-12-12 11:17:50,852 - INFO - process shutting down
+2019-12-12 11:17:50,856 - INFO - sending shutdown message to manager
+2019-12-12 11:22:12,568 - INFO - process shutting down
+2019-12-12 11:22:12,572 - INFO - sending shutdown message to manager
+2019-12-12 11:23:58,815 - INFO - process shutting down
+2019-12-12 11:23:58,819 - INFO - sending shutdown message to manager
+2019-12-12 11:24:48,934 - INFO - process shutting down
+2019-12-12 11:24:48,938 - INFO - sending shutdown message to manager
+2019-12-12 11:25:56,366 - INFO - process shutting down
+2019-12-12 11:25:56,374 - INFO - sending shutdown message to manager
+2019-12-12 11:26:43,098 - INFO - process shutting down
+2019-12-12 11:27:57,275 - INFO - process shutting down
+2019-12-12 11:28:27,802 - INFO - process shutting down
+2019-12-12 12:22:48,714 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:22:48,715 - DEBUG - making connection to manager
+2019-12-12 12:22:48,717 - DEBUG - Queue._start_thread()
+2019-12-12 12:22:48,717 - DEBUG - doing self._thread.start()
+2019-12-12 12:22:48,718 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:22:48,718 - DEBUG - ... done self._thread.start()
+2019-12-12 12:23:29,045 - INFO - process shutting down
+2019-12-12 12:23:29,045 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:23:29,045 - DEBUG - telling queue thread to quit
+2019-12-12 12:23:29,045 - DEBUG - DECREF '18b0f6aef08'
+2019-12-12 12:23:29,046 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:23:29,047 - DEBUG - DECREF '18b0f6ae5c8'
+2019-12-12 12:23:29,048 - DEBUG - DECREF '18b0f6aef88'
+2019-12-12 12:23:29,049 - DEBUG - DECREF '18b0edf53c8'
+2019-12-12 12:23:29,050 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:23:29,050 - INFO - sending shutdown message to manager
+2019-12-12 12:23:29,079 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:23:29,079 - DEBUG - joining queue thread
+2019-12-12 12:23:29,079 - DEBUG - ... queue thread joined
+2019-12-12 12:23:40,759 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:23:40,759 - DEBUG - making connection to manager
+2019-12-12 12:23:40,761 - DEBUG - Queue._start_thread()
+2019-12-12 12:23:40,761 - DEBUG - doing self._thread.start()
+2019-12-12 12:23:40,762 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:23:40,762 - DEBUG - ... done self._thread.start()
+2019-12-12 12:24:42,214 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:24:42,214 - DEBUG - making connection to manager
+2019-12-12 12:24:42,216 - DEBUG - Queue._start_thread()
+2019-12-12 12:24:42,216 - DEBUG - doing self._thread.start()
+2019-12-12 12:24:42,217 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:24:42,217 - DEBUG - ... done self._thread.start()
+2019-12-12 12:25:36,031 - INFO - process shutting down
+2019-12-12 12:25:36,031 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:25:36,031 - DEBUG - telling queue thread to quit
+2019-12-12 12:25:36,031 - DEBUG - DECREF '1584124fe88'
+2019-12-12 12:25:36,031 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:25:36,032 - DEBUG - DECREF '1584124ff88'
+2019-12-12 12:25:36,037 - DEBUG - DECREF '1584124ff08'
+2019-12-12 12:25:36,038 - DEBUG - DECREF '158412579c8'
+2019-12-12 12:25:36,039 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:25:36,039 - INFO - sending shutdown message to manager
+2019-12-12 12:25:36,063 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:25:36,063 - DEBUG - joining queue thread
+2019-12-12 12:25:36,063 - DEBUG - ... queue thread joined
+2019-12-12 12:26:13,250 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:26:13,251 - DEBUG - making connection to manager
+2019-12-12 12:26:13,269 - DEBUG - Queue._start_thread()
+2019-12-12 12:26:13,269 - DEBUG - doing self._thread.start()
+2019-12-12 12:26:13,276 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:26:13,276 - DEBUG - ... done self._thread.start()
+2019-12-12 12:26:41,277 - INFO - process shutting down
+2019-12-12 12:26:41,277 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:26:41,277 - DEBUG - telling queue thread to quit
+2019-12-12 12:26:41,277 - DEBUG - DECREF '2296d25fec8'
+2019-12-12 12:26:41,277 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:26:41,278 - DEBUG - DECREF '2296d25fe48'
+2019-12-12 12:26:41,279 - DEBUG - DECREF '2296d25ff48'
+2019-12-12 12:26:41,280 - DEBUG - DECREF '2296d25ff88'
+2019-12-12 12:26:41,282 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:26:41,282 - INFO - sending shutdown message to manager
+2019-12-12 12:26:41,306 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:26:41,306 - DEBUG - joining queue thread
+2019-12-12 12:26:41,306 - DEBUG - ... queue thread joined
+2019-12-12 12:27:13,694 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:27:13,695 - DEBUG - making connection to manager
+2019-12-12 12:27:13,697 - DEBUG - Queue._start_thread()
+2019-12-12 12:27:13,697 - DEBUG - doing self._thread.start()
+2019-12-12 12:27:13,698 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:27:13,698 - DEBUG - ... done self._thread.start()
+2019-12-12 12:27:48,929 - INFO - process shutting down
+2019-12-12 12:27:48,929 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:27:48,930 - DEBUG - telling queue thread to quit
+2019-12-12 12:27:48,930 - DEBUG - DECREF '24ed278c348'
+2019-12-12 12:27:48,930 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:27:48,932 - DEBUG - DECREF '24ed278c108'
+2019-12-12 12:27:48,933 - DEBUG - DECREF '24ed277ef88'
+2019-12-12 12:27:48,934 - DEBUG - DECREF '24ed278c0c8'
+2019-12-12 12:27:48,935 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:27:48,935 - INFO - sending shutdown message to manager
+2019-12-12 12:27:48,959 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:27:48,960 - DEBUG - joining queue thread
+2019-12-12 12:27:48,960 - DEBUG - ... queue thread joined
+2019-12-12 12:28:53,181 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:28:53,181 - DEBUG - making connection to manager
+2019-12-12 12:28:53,183 - DEBUG - Queue._start_thread()
+2019-12-12 12:28:53,183 - DEBUG - doing self._thread.start()
+2019-12-12 12:28:53,184 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:28:53,184 - DEBUG - ... done self._thread.start()
+2019-12-12 12:29:35,405 - INFO - process shutting down
+2019-12-12 12:29:35,405 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:29:35,406 - DEBUG - telling queue thread to quit
+2019-12-12 12:29:35,406 - DEBUG - DECREF '1c80458ef48'
+2019-12-12 12:29:35,406 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:29:35,407 - DEBUG - DECREF '1c80458eec8'
+2019-12-12 12:29:35,410 - DEBUG - DECREF '1c80458efc8'
+2019-12-12 12:29:35,411 - DEBUG - DECREF '1c80458ea48'
+2019-12-12 12:29:35,411 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:29:35,412 - INFO - sending shutdown message to manager
+2019-12-12 12:29:35,437 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:29:35,437 - DEBUG - joining queue thread
+2019-12-12 12:29:35,438 - DEBUG - ... queue thread joined
+2019-12-12 12:29:57,375 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:29:57,375 - DEBUG - making connection to manager
+2019-12-12 12:29:57,377 - DEBUG - Queue._start_thread()
+2019-12-12 12:29:57,377 - DEBUG - doing self._thread.start()
+2019-12-12 12:29:57,378 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:29:57,379 - DEBUG - ... done self._thread.start()
+2019-12-12 12:30:24,316 - INFO - process shutting down
+2019-12-12 12:30:24,316 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:30:24,316 - DEBUG - telling queue thread to quit
+2019-12-12 12:30:24,316 - DEBUG - DECREF '24a5ccce1c8'
+2019-12-12 12:30:24,316 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:30:24,317 - DEBUG - DECREF '24a5ccbefc8'
+2019-12-12 12:30:24,321 - DEBUG - DECREF '24a5ccbedc8'
+2019-12-12 12:30:24,322 - DEBUG - DECREF '24a5ccce048'
+2019-12-12 12:30:24,323 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:30:24,323 - INFO - sending shutdown message to manager
+2019-12-12 12:30:24,348 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:30:24,348 - DEBUG - joining queue thread
+2019-12-12 12:30:24,348 - DEBUG - ... queue thread joined
+2019-12-12 12:32:19,263 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:32:19,263 - DEBUG - making connection to manager
+2019-12-12 12:32:19,265 - DEBUG - Queue._start_thread()
+2019-12-12 12:32:19,265 - DEBUG - doing self._thread.start()
+2019-12-12 12:32:19,266 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:32:19,266 - DEBUG - ... done self._thread.start()
+2019-12-12 12:33:59,825 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:33:59,826 - DEBUG - making connection to manager
+2019-12-12 12:33:59,827 - DEBUG - Queue._start_thread()
+2019-12-12 12:33:59,828 - DEBUG - doing self._thread.start()
+2019-12-12 12:33:59,829 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:33:59,829 - DEBUG - ... done self._thread.start()
+2019-12-12 12:34:17,602 - INFO - process shutting down
+2019-12-12 12:34:17,602 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:34:17,602 - DEBUG - telling queue thread to quit
+2019-12-12 12:34:17,602 - DEBUG - DECREF '1dd0c80d348'
+2019-12-12 12:34:17,602 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:34:17,603 - DEBUG - DECREF '1dd0c80d108'
+2019-12-12 12:34:17,604 - DEBUG - DECREF '1dd0c7fff88'
+2019-12-12 12:34:17,606 - DEBUG - DECREF '1dd0c80d0c8'
+2019-12-12 12:34:17,607 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:34:17,607 - INFO - sending shutdown message to manager
+2019-12-12 12:34:17,633 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:34:17,633 - DEBUG - joining queue thread
+2019-12-12 12:34:17,633 - DEBUG - ... queue thread joined
+2019-12-12 12:35:55,549 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:35:55,550 - DEBUG - making connection to manager
+2019-12-12 12:35:55,552 - DEBUG - Queue._start_thread()
+2019-12-12 12:35:55,552 - DEBUG - doing self._thread.start()
+2019-12-12 12:35:55,554 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:35:55,554 - DEBUG - ... done self._thread.start()
+2019-12-12 12:36:29,444 - INFO - process shutting down
+2019-12-12 12:36:29,444 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:36:29,444 - DEBUG - telling queue thread to quit
+2019-12-12 12:36:29,444 - DEBUG - DECREF '1e60dcec348'
+2019-12-12 12:36:29,444 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:36:29,445 - DEBUG - DECREF '1e60dcec108'
+2019-12-12 12:36:29,447 - DEBUG - DECREF '1e60dcdef88'
+2019-12-12 12:36:29,448 - DEBUG - DECREF '1e60dcec0c8'
+2019-12-12 12:36:29,449 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:36:29,449 - INFO - sending shutdown message to manager
+2019-12-12 12:36:29,473 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:36:29,473 - DEBUG - joining queue thread
+2019-12-12 12:36:29,473 - DEBUG - ... queue thread joined
+2019-12-12 12:49:15,595 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:49:15,595 - DEBUG - making connection to manager
+2019-12-12 12:49:15,604 - DEBUG - Queue._start_thread()
+2019-12-12 12:49:15,604 - DEBUG - doing self._thread.start()
+2019-12-12 12:49:15,615 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:49:15,616 - DEBUG - ... done self._thread.start()
+2019-12-12 12:49:42,292 - INFO - process shutting down
+2019-12-12 12:49:42,293 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:49:42,293 - DEBUG - telling queue thread to quit
+2019-12-12 12:49:42,293 - DEBUG - DECREF '1ba091cd3c8'
+2019-12-12 12:49:42,293 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:49:42,294 - DEBUG - DECREF '1ba091cd308'
+2019-12-12 12:49:42,295 - DEBUG - DECREF '1ba091cd1c8'
+2019-12-12 12:49:42,297 - DEBUG - DECREF '1ba091cd148'
+2019-12-12 12:49:42,298 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:49:42,298 - INFO - sending shutdown message to manager
+2019-12-12 12:49:42,320 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:49:42,320 - DEBUG - joining queue thread
+2019-12-12 12:49:42,320 - DEBUG - ... queue thread joined
+2019-12-12 12:50:27,014 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:50:27,015 - DEBUG - making connection to manager
+2019-12-12 12:50:27,016 - DEBUG - Queue._start_thread()
+2019-12-12 12:50:27,017 - DEBUG - doing self._thread.start()
+2019-12-12 12:50:27,017 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:50:27,018 - DEBUG - ... done self._thread.start()
+2019-12-12 12:51:11,636 - INFO - process shutting down
+2019-12-12 12:51:11,636 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:51:11,636 - DEBUG - telling queue thread to quit
+2019-12-12 12:51:11,636 - DEBUG - DECREF '1a87f44d208'
+2019-12-12 12:51:11,637 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:51:11,637 - DEBUG - DECREF '1a87f43ff48'
+2019-12-12 12:51:11,638 - DEBUG - DECREF '1a87f43ffc8'
+2019-12-12 12:51:11,639 - DEBUG - DECREF '1a87f44d088'
+2019-12-12 12:51:11,639 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:51:11,639 - INFO - sending shutdown message to manager
+2019-12-12 12:51:11,660 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:51:11,661 - DEBUG - joining queue thread
+2019-12-12 12:51:11,661 - DEBUG - ... queue thread joined
+2019-12-12 12:55:55,841 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 12:55:55,841 - DEBUG - making connection to manager
+2019-12-12 12:55:55,843 - DEBUG - Queue._start_thread()
+2019-12-12 12:55:55,843 - DEBUG - doing self._thread.start()
+2019-12-12 12:55:55,844 - DEBUG - starting thread to feed data to pipe
+2019-12-12 12:55:55,844 - DEBUG - ... done self._thread.start()
+2019-12-12 12:55:55,862 - DEBUG - created semlock with handle 736
+2019-12-12 12:55:55,862 - DEBUG - created semlock with handle 580
+2019-12-12 12:55:55,873 - DEBUG - added worker
+2019-12-12 12:55:55,899 - DEBUG - added worker
+2019-12-12 12:55:55,939 - DEBUG - added worker
+2019-12-12 12:55:55,972 - DEBUG - added worker
+2019-12-12 12:55:56,034 - DEBUG - added worker
+2019-12-12 12:55:56,107 - INFO - process shutting down
+2019-12-12 12:55:56,107 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 12:55:56,108 - DEBUG - finalizing pool
+2019-12-12 12:55:56,109 - DEBUG - helping task handler/workers to finish
+2019-12-12 12:55:56,109 - DEBUG - removing tasks from inqueue until task handler finished
+2019-12-12 12:55:56,110 - DEBUG - joining worker handler
+2019-12-12 12:55:56,110 - DEBUG - result handler found thread._state=TERMINATE
+2019-12-12 12:55:56,110 - DEBUG - ensuring that outqueue is not full
+2019-12-12 12:55:56,110 - DEBUG - result handler exiting: len(cache)=0, thread._state=2
+2019-12-12 12:55:56,136 - DEBUG - worker handler exiting
+2019-12-12 12:55:56,136 - DEBUG - task handler got sentinel
+2019-12-12 12:55:56,136 - DEBUG - terminating workers
+2019-12-12 12:55:56,136 - DEBUG - task handler sending sentinel to result handler
+2019-12-12 12:55:56,137 - DEBUG - joining task handler
+2019-12-12 12:55:56,138 - DEBUG - task handler sending sentinel to workers
+2019-12-12 12:55:56,138 - DEBUG - task handler exiting
+2019-12-12 12:55:56,139 - DEBUG - joining result handler
+2019-12-12 12:55:56,139 - DEBUG - joining pool workers
+2019-12-12 12:55:56,139 - DEBUG - cleaning up worker 21064
+2019-12-12 12:55:56,161 - DEBUG - cleaning up worker 25548
+2019-12-12 12:55:56,163 - DEBUG - cleaning up worker 20300
+2019-12-12 12:55:56,163 - DEBUG - telling queue thread to quit
+2019-12-12 12:55:56,163 - DEBUG - DECREF '1e6c2691148'
+2019-12-12 12:55:56,163 - DEBUG - feeder thread got sentinel -- exiting
+2019-12-12 12:55:56,164 - DEBUG - DECREF '1e6c267ff48'
+2019-12-12 12:55:56,165 - DEBUG - DECREF '1e6c267fec8'
+2019-12-12 12:55:56,167 - DEBUG - DECREF '1e6c267ff88'
+2019-12-12 12:55:56,167 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 12:55:56,168 - INFO - sending shutdown message to manager
+2019-12-12 12:55:56,201 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 12:55:56,201 - DEBUG - joining queue thread
+2019-12-12 12:55:56,201 - DEBUG - ... queue thread joined
+2019-12-12 13:03:29,129 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 13:03:29,129 - DEBUG - making connection to manager
+2019-12-12 13:03:29,159 - DEBUG - created semlock with handle 664
+2019-12-12 13:03:29,159 - DEBUG - created semlock with handle 908
+2019-12-12 13:03:29,170 - DEBUG - added worker
+2019-12-12 13:03:29,202 - DEBUG - added worker
+2019-12-12 13:03:29,232 - DEBUG - added worker
+2019-12-12 13:03:29,283 - DEBUG - added worker
+2019-12-12 13:03:29,317 - DEBUG - added worker
+2019-12-12 13:03:29,332 - DEBUG - thread 'Thread-2' does not own a connection
+2019-12-12 13:03:29,333 - DEBUG - making connection to manager
+2019-12-12 13:03:33,924 - INFO - process shutting down
+2019-12-12 13:03:33,925 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 13:03:33,925 - DEBUG - finalizing pool
+2019-12-12 13:03:33,925 - DEBUG - helping task handler/workers to finish
+2019-12-12 13:03:33,925 - DEBUG - removing tasks from inqueue until task handler finished
+2019-12-12 13:03:33,927 - DEBUG - task handler found thread._state != RUN
+2019-12-12 13:03:33,927 - DEBUG - task handler sending sentinel to result handler
+2019-12-12 13:03:33,928 - DEBUG - task handler sending sentinel to workers
+2019-12-12 13:03:33,928 - DEBUG - result handler got sentinel
+2019-12-12 13:03:33,928 - DEBUG - INCREF '1d24882d088'
+2019-12-12 13:03:33,929 - DEBUG - ensuring that outqueue is not full
+2019-12-12 13:03:33,929 - DEBUG - task handler exiting
+2019-12-12 13:03:33,930 - DEBUG - result handler exiting: len(cache)=0, thread._state=0
+2019-12-12 13:03:33,932 - DEBUG - INCREF '1d24881ffc8'
+2019-12-12 13:03:33,933 - DEBUG - INCREF '1d24881fdc8'
+2019-12-12 13:03:33,935 - DEBUG - INCREF '1d24882d208'
+2019-12-12 13:03:33,936 - DEBUG - INCREF '1d24882d388'
+2019-12-12 13:03:33,936 - DEBUG - DECREF '1d24882d088'
+2019-12-12 13:03:33,938 - DEBUG - DECREF '1d24881ffc8'
+2019-12-12 13:03:33,939 - DEBUG - DECREF '1d24881fdc8'
+2019-12-12 13:03:33,941 - DEBUG - DECREF '1d24882d208'
+2019-12-12 13:03:33,942 - DEBUG - DECREF '1d24882d388'
+2019-12-12 13:03:33,944 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 13:03:33,944 - DEBUG - joining worker handler
+2019-12-12 13:03:34,019 - DEBUG - worker handler exiting
+2019-12-12 13:03:34,019 - DEBUG - terminating workers
+2019-12-12 13:03:34,021 - DEBUG - joining task handler
+2019-12-12 13:03:34,021 - DEBUG - joining result handler
+2019-12-12 13:03:34,021 - DEBUG - joining pool workers
+2019-12-12 13:03:34,022 - DEBUG - cleaning up worker 25832
+2019-12-12 13:03:34,058 - DEBUG - cleaning up worker 37324
+2019-12-12 13:03:34,070 - DEBUG - DECREF '1d24882d388'
+2019-12-12 13:03:34,074 - DEBUG - DECREF '1d24882d208'
+2019-12-12 13:03:34,078 - DEBUG - DECREF '1d24881fdc8'
+2019-12-12 13:03:34,081 - DEBUG - DECREF '1d24881ffc8'
+2019-12-12 13:03:34,082 - DEBUG - DECREF '1d24882d088'
+2019-12-12 13:03:34,084 - INFO - sending shutdown message to manager
+2019-12-12 13:03:34,138 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 13:04:03,012 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 13:04:03,013 - DEBUG - making connection to manager
+2019-12-12 13:04:03,045 - DEBUG - created semlock with handle 648
+2019-12-12 13:04:03,045 - DEBUG - created semlock with handle 744
+2019-12-12 13:04:03,069 - DEBUG - added worker
+2019-12-12 13:04:03,100 - DEBUG - added worker
+2019-12-12 13:04:03,144 - DEBUG - added worker
+2019-12-12 13:04:03,203 - DEBUG - added worker
+2019-12-12 13:04:03,253 - DEBUG - added worker
+2019-12-12 13:04:03,300 - DEBUG - added worker
+2019-12-12 13:04:03,342 - DEBUG - added worker
+2019-12-12 13:04:03,392 - DEBUG - added worker
+2019-12-12 13:04:03,450 - DEBUG - added worker
+2019-12-12 13:04:03,561 - DEBUG - added worker
+2019-12-12 13:04:03,753 - DEBUG - thread 'Thread-2' does not own a connection
+2019-12-12 13:04:03,753 - DEBUG - making connection to manager
+2019-12-12 13:04:09,272 - INFO - process shutting down
+2019-12-12 13:04:09,272 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 13:04:09,272 - DEBUG - finalizing pool
+2019-12-12 13:04:09,272 - DEBUG - helping task handler/workers to finish
+2019-12-12 13:04:09,273 - DEBUG - removing tasks from inqueue until task handler finished
+2019-12-12 13:04:09,274 - DEBUG - task handler found thread._state != RUN
+2019-12-12 13:04:09,274 - DEBUG - task handler sending sentinel to result handler
+2019-12-12 13:04:09,275 - DEBUG - result handler got sentinel
+2019-12-12 13:04:09,275 - DEBUG - task handler sending sentinel to workers
+2019-12-12 13:04:09,275 - DEBUG - ensuring that outqueue is not full
+2019-12-12 13:04:09,276 - DEBUG - result handler exiting: len(cache)=0, thread._state=0
+2019-12-12 13:04:09,276 - DEBUG - task handler exiting
+2019-12-12 13:04:09,288 - DEBUG - INCREF '2935a42ff08'
+2019-12-12 13:04:09,291 - DEBUG - INCREF '2935a42ff88'
+2019-12-12 13:04:09,293 - DEBUG - INCREF '2935a42ff48'
+2019-12-12 13:04:09,295 - DEBUG - INCREF '2935a42fe88'
+2019-12-12 13:04:09,297 - DEBUG - INCREF '2935a440148'
+2019-12-12 13:04:09,297 - DEBUG - DECREF '2935a42ff08'
+2019-12-12 13:04:09,298 - DEBUG - DECREF '2935a42ff88'
+2019-12-12 13:04:09,300 - DEBUG - DECREF '2935a42ff48'
+2019-12-12 13:04:09,302 - DEBUG - DECREF '2935a42fe88'
+2019-12-12 13:04:09,303 - DEBUG - DECREF '2935a440148'
+2019-12-12 13:04:09,305 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 13:04:09,305 - DEBUG - joining worker handler
+2019-12-12 13:04:09,334 - DEBUG - worker handler exiting
+2019-12-12 13:04:09,334 - DEBUG - terminating workers
+2019-12-12 13:04:09,336 - DEBUG - joining task handler
+2019-12-12 13:04:09,336 - DEBUG - joining result handler
+2019-12-12 13:04:09,337 - DEBUG - joining pool workers
+2019-12-12 13:04:09,337 - DEBUG - cleaning up worker 14584
+2019-12-12 13:04:09,378 - DEBUG - cleaning up worker 21352
+2019-12-12 13:04:09,407 - DEBUG - cleaning up worker 35752
+2019-12-12 13:04:09,409 - DEBUG - DECREF '2935a440148'
+2019-12-12 13:04:09,423 - DEBUG - DECREF '2935a42fe88'
+2019-12-12 13:04:09,426 - DEBUG - DECREF '2935a42ff48'
+2019-12-12 13:04:09,446 - DEBUG - DECREF '2935a42ff88'
+2019-12-12 13:04:09,449 - DEBUG - DECREF '2935a42ff08'
+2019-12-12 13:04:09,457 - INFO - sending shutdown message to manager
+2019-12-12 13:04:09,515 - DEBUG - running the remaining "atexit" finalizers
+2019-12-12 13:04:24,735 - DEBUG - thread 'MainThread' does not own a connection
+2019-12-12 13:04:24,736 - DEBUG - making connection to manager
+2019-12-12 13:04:24,767 - DEBUG - created semlock with handle 776
+2019-12-12 13:04:24,767 - DEBUG - created semlock with handle 900
+2019-12-12 13:04:24,779 - DEBUG - added worker
+2019-12-12 13:04:24,806 - DEBUG - added worker
+2019-12-12 13:04:24,852 - DEBUG - added worker
+2019-12-12 13:04:24,887 - DEBUG - added worker
+2019-12-12 13:04:24,916 - DEBUG - added worker
+2019-12-12 13:04:24,976 - DEBUG - added worker
+2019-12-12 13:04:25,033 - DEBUG - added worker
+2019-12-12 13:04:25,036 - DEBUG - thread 'Thread-2' does not own a connection
+2019-12-12 13:04:25,036 - DEBUG - making connection to manager
+2019-12-12 13:04:29,955 - INFO - process shutting down
+2019-12-12 13:04:29,956 - DEBUG - running all "atexit" finalizers with priority >= 0
+2019-12-12 13:04:29,956 - DEBUG - finalizing pool
+2019-12-12 13:04:29,956 - DEBUG - helping task handler/workers to finish
+2019-12-12 13:04:29,956 - DEBUG - removing tasks from inqueue until task handler finished
+2019-12-12 13:04:29,958 - DEBUG - task handler found thread._state != RUN
+2019-12-12 13:04:29,959 - DEBUG - task handler sending sentinel to result handler
+2019-12-12 13:04:29,959 - DEBUG - task handler sending sentinel to workers
+2019-12-12 13:04:29,959 - DEBUG - result handler got sentinel
+2019-12-12 13:04:29,959 - DEBUG - ensuring that outqueue is not full
+2019-12-12 13:04:29,960 - DEBUG - task handler exiting
+2019-12-12 13:04:29,960 - DEBUG - result handler exiting: len(cache)=0, thread._state=0
+2019-12-12 13:04:29,961 - DEBUG - worker handler exiting
+2019-12-12 13:04:29,961 - DEBUG - INCREF '255a484ff88'
+2019-12-12 13:04:29,968 - DEBUG - INCREF '255a484fec8'
+2019-12-12 13:04:29,972 - DEBUG - INCREF '255a484ff48'
+2019-12-12 13:04:29,976 - DEBUG - INCREF '255a4860148'
+2019-12-12 13:04:29,978 - DEBUG - INCREF '255a48602c8'
+2019-12-12 13:04:29,978 - DEBUG - DECREF '255a484ff88'
+2019-12-12 13:04:29,980 - DEBUG - DECREF '255a484fec8'
+2019-12-12 13:04:29,982 - DEBUG - DECREF '255a484ff48'
+2019-12-12 13:04:29,983 - DEBUG - DECREF '255a4860148'
+2019-12-12 13:04:29,984 - DEBUG - DECREF '255a48602c8'
+2019-12-12 13:04:29,986 - DEBUG - thread 'MainThread' has no more proxies so closing conn
+2019-12-12 13:04:29,987 - DEBUG - joining worker handler
+2019-12-12 13:04:29,987 - DEBUG - terminating workers
+2019-12-12 13:04:29,989 - DEBUG - joining task handler
+2019-12-12 13:04:29,989 - DEBUG - joining result handler
+2019-12-12 13:04:29,989 - DEBUG - joining pool workers
+2019-12-12 13:04:29,990 - DEBUG - cleaning up worker 4604
+2019-12-12 13:04:30,053 - DEBUG - cleaning up worker 36704
+2019-12-12 13:04:30,057 - DEBUG - DECREF '255a48602c8'
+2019-12-12 13:04:30,059 - DEBUG - DECREF '255a4860148'
+2019-12-12 13:04:30,061 - DEBUG - DECREF '255a484ff48'
+2019-12-12 13:04:30,063 - DEBUG - DECREF '255a484fec8'
+2019-12-12 13:04:30,065 - DEBUG - DECREF '255a484ff88'
+2019-12-12 13:04:30,066 - INFO - sending shutdown message to manager
+2019-12-12 13:04:30,114 - DEBUG - running the remaining "atexit" finalizers
