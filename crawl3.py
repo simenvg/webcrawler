@@ -5,13 +5,16 @@ import logging
 import os
 from bs4 import BeautifulSoup
 import time
+from urllib.parse import urlparse
 
 
 
 class Scraper:
-    def __init__(self, base_url):
+    def __init__(self, base_url, restricted_urls, subdomains):
         manager = multiprocessing.Manager()
         self.base_url = base_url
+        self.restricted_urls = restricted_urls
+        self.subdomains = subdomains
         self.processed_urls = manager.list()
         self.local_urls = manager.list()
         self.foreign_urls = manager.list()
@@ -19,8 +22,8 @@ class Scraper:
         self.url_queue = multiprocessing.Queue()
         self.logger = self.create_logger()
         self.initialize()
-        self.max_requests_per_second = 100
-        self.num_threads = 7
+        self.max_requests_per_second = 3
+        self.num_threads = 15
 
 
     def initialize(self):
@@ -42,19 +45,23 @@ class Scraper:
         proc = os.getpid()
         while True:
             print("processed urls: " + str(len(self.processed_urls)))
-            print("unprocessed urls: " + str(self.url_queue.qsize()))
+            print("unprocessed urls: " + str(len(self.local_urls) - len(self.processed_urls)))
             time.sleep(self.num_threads / self.max_requests_per_second)
             try:
                 url = url_queue.get_nowait()
                 while url in self.processed_urls:
                     url = url_queue.get_nowait()
+                self.find_links(url)
             except queue.Empty:
                 time.sleep(0.5)
                 if url_queue.empty():
                     break
                 else:
                     continue
-            self.find_links(url)
+            except Exception as e:
+                print("Excepition : " + e)
+                continue
+            
         print("Thread: " + str(proc) + " Stopped")
         
 
@@ -88,9 +95,11 @@ class Scraper:
         new_local_links = []
         for link in links:
             link_str = str(link)
-            if link_str.startswith("/"):
+            if self.ignore_url(link_str):
+                continue
+            elif link_str.startswith("/"):
                 #Should be url, and not baseurl
-                new_local_links.append(url+link_str)
+                new_local_links.append(self.base_url+link_str)
             elif link_str.startswith(self.base_url):
                 new_local_links.append(link_str)
             else:
@@ -100,6 +109,21 @@ class Scraper:
                 self.url_queue.put(elem)
             if elem not in self.local_urls:
                 self.local_urls.append(elem)
+
+    def ignore_url(self, url):
+        if url.startswith("/"):
+            url = self.base_url + url
+        path = urlparse(url).path
+        if path == "":
+            return False
+        for elem in self.restricted_urls:
+            if elem.startswith(path):
+                #print("IGNORING:   " + url)
+                return True
+        for elem in self.subdomains:
+            if  path.startswith(elem):                
+                return False
+        return True
 
     def start_worker_threads(self):
         processes = []
@@ -121,7 +145,10 @@ class Scraper:
 
 
 if __name__ == '__main__':    
-    scraper = Scraper('https://crawler-test.com/')
+    ignore = ["/handlekurv/partial/", "/handlekurv/products/", "/handlekurv/toggle/", "/handlelister/ajax/0/products/", "/handlelister/ajax/new/", "/sok/boost/", "/utlevering/postnummeroppslag/â€Ž", "/utlevering/postnummeroppslag/â€Žbedrift/", "/utlevering/ajax/delivery-availability/"]    
+    subdomains = ["/produkter", "/kategorier", "/oppskrifter"]
+    scraper = Scraper('https://kolonial.no', ignore, subdomains)
+    
     print("HEI")
     t0 = time.time()
     scraper.start_worker_threads()
