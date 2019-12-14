@@ -6,6 +6,7 @@ import os
 from bs4 import BeautifulSoup
 import time
 from urllib.parse import urlparse
+import Product
 
 
 
@@ -13,39 +14,35 @@ class Scraper:
     def __init__(self, base_url, restricted_urls, subdomains):
         manager = multiprocessing.Manager()
         self.base_url = base_url
+        self.max_requests_per_second = 20
+        self.num_threads = 7
+
         self.restricted_urls = restricted_urls
         self.subdomains = subdomains
+
         self.processed_urls = manager.list()
         self.local_urls = manager.list()
         self.foreign_urls = manager.list()
         self.broken_urls = manager.list()
         self.url_queue = multiprocessing.Queue()
-        self.logger = self.create_logger()
+
+        self.products = manager.list()
+
+
         self.initialize()
-        self.max_requests_per_second = 3
-        self.num_threads = 15
-
-
+        
     def initialize(self):
         self.find_links(self.base_url)
-
-    def create_logger(self):
-        logger = multiprocessing.get_logger()
-        logger.setLevel(logging.DEBUG)
-        fh = logging.FileHandler('process.log')
-        fmt = '%(asctime)s - %(levelname)s - %(message)s'
-        formatter = logging.Formatter(fmt)
-        fh.setFormatter(formatter)
-        logger.addHandler(fh)
-        return logger  
+  
     
     def scrape(self, url_queue):
         proc = os.getpid()
         print("Thread: " + str(proc) +" started")
         proc = os.getpid()
         while True:
-            print("processed urls: " + str(len(self.processed_urls)))
-            print("unprocessed urls: " + str(len(self.local_urls) - len(self.processed_urls)))
+            if len(self.processed_urls) % 200 == 0:
+                print("processed urls: " + str(len(self.processed_urls)))
+                print("unprocessed urls: " + str(self.url_queue.qsize()))
             time.sleep(self.num_threads / self.max_requests_per_second)
             try:
                 url = url_queue.get_nowait()
@@ -76,7 +73,15 @@ class Scraper:
         else:
             links = self.get_all_links_on_page(res.text)
             self.filter_links(links, url)
-            self.add_elem_if_not_in_list(self.processed_urls, url)
+            if url not in self.processed_urls:
+                product = Product.find_product(res.text)
+                if product != None:
+                    self.products.append(product)
+                self.processed_urls.append(url)
+
+
+
+    
 
 
     def add_elem_if_not_in_list(self, lst, elem):
@@ -91,7 +96,7 @@ class Scraper:
                 links.append(link.get("href"))
         return links
         
-    def filter_links(self, links, url):
+    def filter_links(self, links, url):    
         new_local_links = []
         for link in links:
             link_str = str(link)
@@ -116,6 +121,8 @@ class Scraper:
         path = urlparse(url).path
         if path == "":
             return False
+        if '?' in path:
+            return True
         for elem in self.restricted_urls:
             if elem.startswith(path):
                 #print("IGNORING:   " + url)
@@ -146,7 +153,7 @@ class Scraper:
 
 if __name__ == '__main__':    
     ignore = ["/handlekurv/partial/", "/handlekurv/products/", "/handlekurv/toggle/", "/handlelister/ajax/0/products/", "/handlelister/ajax/new/", "/sok/boost/", "/utlevering/postnummeroppslag/â€Ž", "/utlevering/postnummeroppslag/â€Žbedrift/", "/utlevering/ajax/delivery-availability/"]    
-    subdomains = ["/produkter", "/kategorier", "/oppskrifter"]
+    subdomains = ["/produkter", "/kategorier"]
     scraper = Scraper('https://kolonial.no', ignore, subdomains)
     
     print("HEI")
@@ -159,3 +166,9 @@ if __name__ == '__main__':
     print("local: " + str(scraper.local_urls)+ "    length: " + str(len(scraper.local_urls)))
     print("processed: " + str(scraper.processed_urls) + "    length: " + str(len(scraper.processed_urls)))
     print("TIME: " + str(t1-t0))
+
+    with open('products.csv', 'w', encoding="utf-8") as file:
+        file.write("name;brand;price\n")
+        for product in scraper.products:
+            file.write(product.name + ";" + product.brand_name + ";" + product.price + "\n")
+
