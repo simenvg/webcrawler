@@ -26,24 +26,24 @@ def find_product(html):
     except:
         #print("No products found")
         return None
-    brand_name = "Not found"
+    brand_name = None
     try:
         brand_name = soup.find("span", {"itemprop":"brand"}).text.strip()
     except:
-        print("No brand name found")
+        brand_name = "Not found"
     p = Product(name, price, brand_name)
     p.print()
     return p
     
 
 
-res = requests.get("https://kolonial.no/produkter/27594-sotpotet-i-beger-usa/")
-p = find_product(res.text)
-if p != None:
-    with open('products.csv', 'w', encoding="utf-8") as file:
-        file.write("name;brand;price\n")
-        file.write(p.name + ";" + p.brand_name + ";" + p.price + "\n")
-    p.print()
+# res = requests.get("https://kolonial.no/produkter/27594-sotpotet-i-beger-usa/")
+# p = find_product(res.text)
+# if p != None:
+#     with open('products.csv', 'w', encoding="utf-8") as file:
+#         file.write("name;brand;price\n")
+#         file.write(p.name + ";" + p.brand_name + ";" + p.price + "\n")
+#     p.print()
 
 
 
