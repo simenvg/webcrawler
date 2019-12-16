@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import time
 from urllib.parse import urlparse
 from urllib import robotparser
-import ProductElkjop
+import ProductKolonial
 
 
 
@@ -101,8 +101,9 @@ class Scraper:
             self.add_elem_if_not_in_list(self.broken_urls, url)
         else:
             links = self.get_all_links_on_page(res.text)
-            self.filter_links(links, url)
-            product = ProductElkjop.find_product(res.text, url) 
+            self.process_new_links(links, url)
+            
+            product = ProductKolonial.find_product(res.text, url) 
             if product != None:
                 self.add_product_to_list(product)
 
@@ -118,7 +119,7 @@ class Scraper:
                 links.append(self.get_full_url(str(link.get("href"))))
         return links
         
-    def filter_links(self, links, url):    
+    def process_new_links(self, links, url):    
         new_local_links = []
         for link in links:
             if self.ignore_url(link):

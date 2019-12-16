@@ -27,7 +27,7 @@ def find_product(html, url):
     except:
         #print("No products found")
         return None
-    brand_name = None
+    brand_name = "Not found"
     try:
         brand_name = soup.find("span", {"itemprop":"brand"}).text.strip()
     except:
