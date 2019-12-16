@@ -1,7 +1,6 @@
 import multiprocessing
 import requests
 import queue  # queue.Empty exception
-import logging
 import os
 from bs4 import BeautifulSoup
 import time
@@ -28,11 +27,12 @@ class Scraper:
         self.foreign_urls = manager.list()
         self.broken_urls = manager.list()
         self.ignored_urls = manager.list()
+
         self.url_queue = multiprocessing.Queue()
+        self.queue_lock = multiprocessing.Lock()
 
         self.products = manager.list()
-        self.productLock = multiprocessing.Lock()
-
+        self.product_lock = multiprocessing.Lock()
 
         self.initialize()
         
@@ -44,7 +44,6 @@ class Scraper:
         robparser.set_url(self.base_url + "/robots.txt")
         try:
             robparser.read()
-            # print(robparser.can_fetch("https://kolonial.no"))
             return robparser
         except Exception as e:
             print(e)
@@ -54,14 +53,13 @@ class Scraper:
     def scrape(self, url_queue):
         proc = os.getpid()
         print("Thread: " + str(proc) +" started")
-        proc = os.getpid()
         while True:
-            #print("unprocessed urls: " + str(self.url_queue.qsize()))
             if len(self.processed_urls) % 200 == 0:
                 print("\n\n #### \n\n")
                 print("processed urls: " + str(len(self.processed_urls)))
-                #print("unprocessed urls: " + str(self.url_queue.qsize()))
+                print("unprocessed urls: " + str(self.url_queue.qsize()))
                 print("\n\n #### \n\n")
+
             time.sleep(self.num_threads / self.max_requests_per_second)
 
             url = self.get_unprocessed_url_from_queue(url_queue)
@@ -74,36 +72,25 @@ class Scraper:
                     break
                 else:
                     continue
-                
 
-            # try:
-            #     url = url_queue.get_nowait()
-            #     while url in self.processed_urls:
-            #         url = url_queue.get_nowait()
-            #     self.process_url(self.get_full_url(url))
-            # except queue.Empty:
-            #     time.sleep(0.5)
-            #     if url_queue.empty():
-            #         break
-            #     else:
-            #         continue
-            # except Exception as e:
-            #     print("Excepition : " + e)
-            #     continue
-            
         print("Thread: " + str(proc) + " Stopped")
         
     def get_unprocessed_url_from_queue(self, url_queue):
+        self.queue_lock.acquire()
         try:
             url = url_queue.get_nowait()
             while url in self.processed_urls:
                 url = url_queue.get_nowait()
+            self.processed_urls.append(url)
+            self.queue_lock.release()
             return url
         except queue.Empty:
+            self.queue_lock.release()
             return None
-        except Exception as e:
-            print(e)
-            return None
+        # except Exception as e:
+        #     print(e)
+        #     self.queue_lock.release()
+        #     return None
 
     def process_url(self, url):
         try:
@@ -112,16 +99,12 @@ class Scraper:
         except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError, requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema, requests.exceptions.TooManyRedirects):
             print("BROKEN URL")
             self.add_elem_if_not_in_list(self.broken_urls, url)
-            self.add_elem_if_not_in_list(self.processed_urls, url)
         else:
             links = self.get_all_links_on_page(res.text)
             self.filter_links(links, url)
-            if url not in self.processed_urls:
-                product = ProductElkjop.find_product(res.text)
-                if product != None:
-                    self.add_product_to_list(product)
-                    #self.products.append(product)
-                self.processed_urls.append(url)
+            product = ProductElkjop.find_product(res.text, url) 
+            if product != None:
+                self.add_product_to_list(product)
 
     def add_elem_if_not_in_list(self, lst, elem):
         if elem not in lst:
@@ -157,7 +140,7 @@ class Scraper:
             return url
 
     def add_product_to_list(self, new_product):
-        self.productLock.acquire()
+        self.product_lock.acquire()
         print(str(os.getpid()) + "Aquired lock")
         product_already_in_products = False
         for product in self.products:
@@ -166,9 +149,11 @@ class Scraper:
         if not product_already_in_products:
             self.products.append(new_product)
         print(str(os.getpid()) + "Releasing lock")
-        self.productLock.release()
+        self.product_lock.release()
 
     def ignore_url(self, full_url):
+        if '?' in full_url:
+            return True
         if self.robottxt.can_fetch("*", full_url) and self.url_in_user_search_filter(full_url):
             return False
         else:
@@ -219,9 +204,9 @@ def start_scraper(base_url, num_threads, max_requests_per_second, subdomains):
     print(scraper.foreign_urls)
     timestr = time.strftime("%Y%m%d-%H%M%S")
     with open('products'+'_'+timestr+'.csv', 'w', encoding="utf-8") as file:
-        file.write("name;brand;price\n")
+        file.write("Name;Brand;Price;URL\n")
         for product in scraper.products:
-            file.write(product.name + ";" + product.brand_name + ";" + product.price + "\n")
+            file.write(product.name + ";" + product.brand_name + ";" + product.price + ";" + product.url  + "\n")
 
 
 if __name__ == '__main__':    
@@ -241,7 +226,7 @@ if __name__ == '__main__':
     print("TIME: " + str(t1-t0))
 
     with open('products.csv', 'w', encoding="utf-8") as file:
-        file.write("name;brand;price\n")
+        file.write("name;brand;price;url\n")
         for product in scraper.products:
-            file.write(product.name + ";" + product.brand_name + ";" + product.price + "\n")
+            file.write(product.name + ";" + product.brand_name + ";" + product.price + ";" + product.url + "\n")
 

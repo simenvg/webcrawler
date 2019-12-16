@@ -1,6 +1,6 @@
 import argparse
 import textwrap
-import crawl3
+import Scraper
 
 
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     print(subdomains)
 
 
-    crawl3.start_scraper(base_url, num_threads, max_requests_per_second, subdomains)
+    Scraper.start_scraper(base_url, num_threads, max_requests_per_second, subdomains)
 
 
 
