@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import time
 from urllib.parse import urlparse
 from urllib import robotparser
-import ProductKolonial
+import product_kolonial
 
 
 
@@ -16,11 +16,9 @@ class Scraper:
         self.base_url = base_url
         self.num_threads = num_threads
         self.max_requests_per_second = max_requests_per_second
+        self.subdomains = subdomains
         
         self.robottxt = self.init_robot_parser()
-    
-        #self.restricted_urls = restricted_urls
-        self.subdomains = subdomains
 
         self.processed_urls = manager.list()
         self.local_urls = manager.list()
@@ -55,11 +53,9 @@ class Scraper:
         print("Thread: " + str(proc) +" started")
         while True:
             if len(self.processed_urls) % 200 == 0:
-                print("\n\n #### \n\n")
-                print("processed urls: " + str(len(self.processed_urls)))
-                print("unprocessed urls: " + str(self.url_queue.qsize()))
-                print("\n\n #### \n\n")
+                print(" \n \n processed urls: " + str(len(self.processed_urls)) + "\n\n")
 
+            # Ensure max requests per second
             time.sleep(self.num_threads / self.max_requests_per_second)
 
             url = self.get_unprocessed_url_from_queue(url_queue)
@@ -72,7 +68,6 @@ class Scraper:
                     break
                 else:
                     continue
-
         print("Thread: " + str(proc) + " Stopped")
         
     def get_unprocessed_url_from_queue(self, url_queue):
@@ -87,29 +82,23 @@ class Scraper:
         except queue.Empty:
             self.queue_lock.release()
             return None
-        # except Exception as e:
-        #     print(e)
-        #     self.queue_lock.release()
-        #     return None
 
     def process_url(self, url):
         try:
-            # Add time restriction here?
             res = requests.get(url)
         except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError, requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema, requests.exceptions.TooManyRedirects):
             print("BROKEN URL")
-            self.add_elem_if_not_in_list(self.broken_urls, url)
+            if url not in self.broken_urls:
+                self.broken_urls.append(url)
         else:
+            # Get links on page
             links = self.get_all_links_on_page(res.text)
-            self.process_new_links(links, url)
-            
-            product = ProductKolonial.find_product(res.text, url) 
-            if product != None:
-                self.add_product_to_list(product)
+            self.process_links(links, url)
 
-    def add_elem_if_not_in_list(self, lst, elem):
-        if elem not in lst:
-            lst.append(elem)
+            # Find product on page
+            product = product_kolonial.find_product(res.text, url) 
+            if product != None:
+                self.append_product(product)
 
     def get_all_links_on_page(self, html):
         links = []
@@ -119,15 +108,17 @@ class Scraper:
                 links.append(self.get_full_url(str(link.get("href"))))
         return links
         
-    def process_new_links(self, links, url):    
+    def process_links(self, links, url):    
         new_local_links = []
         for link in links:
             if self.ignore_url(link):
+                # DISALLOW in robot.txt or outside user search filter 
                 continue
             elif link.startswith(self.base_url):
                 new_local_links.append(link)
             else:
-                self.add_elem_if_not_in_list(self.foreign_urls, link)
+                if link not in self.foreign_urls:
+                    self.foreign_urls.append(link)
         for elem in new_local_links:
             if elem not in self.processed_urls:
                 self.url_queue.put(elem)
@@ -140,16 +131,16 @@ class Scraper:
         else:
             return url
 
-    def add_product_to_list(self, new_product):
+    def append_product(self, new_product):
         self.product_lock.acquire()
-        print(str(os.getpid()) + "Aquired lock")
+        # print(str(os.getpid()) + "Aquired lock")
         product_already_in_products = False
         for product in self.products:
             if new_product.name == product.name and new_product.price == product.price:
                 product_already_in_products = True
         if not product_already_in_products:
             self.products.append(new_product)
-        print(str(os.getpid()) + "Releasing lock")
+        # print(str(os.getpid()) + "Releasing lock")
         self.product_lock.release()
 
     def ignore_url(self, full_url):
@@ -159,7 +150,7 @@ class Scraper:
             return False
         else:
             if not self.robottxt.can_fetch("*", full_url):
-                print("Robo not fetch: " + full_url)
+                print("robots.txt blocked request to: " + full_url)
             self.ignored_urls.append(full_url)
             return True
 
@@ -195,6 +186,8 @@ def start_scraper(base_url, num_threads, max_requests_per_second, subdomains):
     t0 = time.time()
     scraper.start_worker_threads()
     t1 = time.time()
+
+    print("\n\n ##################################################### \n")
     print("Scraper finished")
     print("Elapsed time in seconds: " + str(t1-t0))
     print("Processed " + str(len(scraper.processed_urls)) + "  urls")
@@ -208,26 +201,4 @@ def start_scraper(base_url, num_threads, max_requests_per_second, subdomains):
         file.write("Name;Brand;Price;URL\n")
         for product in scraper.products:
             file.write(product.name + ";" + product.brand_name + ";" + product.price + ";" + product.url  + "\n")
-
-
-if __name__ == '__main__':    
-    # ignore = ["/handlekurv/partial/", "/handlekurv/products/", "/handlekurv/toggle/", "/handlelister/ajax/0/products/", "/handlelister/ajax/new/", "/sok/boost/", "/utlevering/postnummeroppslag/â€Ž", "/utlevering/postnummeroppslag/â€Žbedrift/", "/utlevering/ajax/delivery-availability/"]    
-    subdomains = ["/produkter", "/kategorier"]
-    scraper = Scraper('https://kolonial.no', 5, 10, subdomains)
-    
-    print("HEI")
-    t0 = time.time()
-    scraper.start_worker_threads()
-    t1 = time.time()
-    print("TIME: " + str(t1-t0))
-    print("broken: " + str(scraper.broken_urls)+ "    length: " + str(len(scraper.broken_urls)))
-    print("foreign: " + str(scraper.foreign_urls) + "    length: " + str(len(scraper.foreign_urls)))
-    print("local: " + str(scraper.local_urls)+ "    length: " + str(len(scraper.local_urls)))
-    print("processed: " + str(scraper.processed_urls) + "    length: " + str(len(scraper.processed_urls)))
-    print("TIME: " + str(t1-t0))
-
-    with open('products.csv', 'w', encoding="utf-8") as file:
-        file.write("name;brand;price;url\n")
-        for product in scraper.products:
-            file.write(product.name + ";" + product.brand_name + ";" + product.price + ";" + product.url + "\n")
 

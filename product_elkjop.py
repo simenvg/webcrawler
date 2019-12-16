@@ -17,8 +17,6 @@ class Product:
     def print(self):
         print(self.name + "     price: " + self.price)
 
-
-
 def find_product(html, url):
     try:
         soup = BeautifulSoup(html, "html.parser")
@@ -29,17 +27,3 @@ def find_product(html, url):
     p = Product(name, price, url)
     p.print()
     return p
-    
-
-
-# res = requests.get("https://kolonial.no/produkter/27594-sotpotet-i-beger-usa/")
-# p = find_product(res.text)
-# if p != None:
-#     with open('products.csv', 'w', encoding="utf-8") as file:
-#         file.write("name;brand;price\n")
-#         file.write(p.name + ";" + p.brand_name + ";" + p.price + "\n")
-#     p.print()
-
-
-
-        

@@ -7,15 +7,9 @@ import Scraper
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog="Webcrawler",
     formatter_class=argparse.RawDescriptionHelpFormatter,
-    epilog=textwrap.dedent("""
-    This program finds href links in html a element, and adds them to a queue. 
-    Threads go through the links and continously adds unvisited links to the 
-    queue. On each link the crawler tries to find a product and its price, 
-    and adds this to a list. When the program finishes it writes all found 
-    products are written to products to csv in project root folder"""),
     usage=textwrap.dedent(
     '''
-    python main.py https://kolonial.no 6 10 /produkter,/oppskrifter,/kategorier
+    python run.py https://kolonial.no 6 10 /produkter,/oppskrifter,/kategorier
     '''))
 
 
