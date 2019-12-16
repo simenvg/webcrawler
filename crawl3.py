@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import time
 from urllib.parse import urlparse
 from urllib import robotparser
-import Product
+import ProductElkjop
 
 
 
@@ -31,6 +31,7 @@ class Scraper:
         self.url_queue = multiprocessing.Queue()
 
         self.products = manager.list()
+        self.productLock = multiprocessing.Lock()
 
 
         self.initialize()
@@ -59,7 +60,7 @@ class Scraper:
             if len(self.processed_urls) % 200 == 0:
                 print("\n\n #### \n\n")
                 print("processed urls: " + str(len(self.processed_urls)))
-                print("unprocessed urls: " + str(self.url_queue.qsize()))
+                #print("unprocessed urls: " + str(self.url_queue.qsize()))
                 print("\n\n #### \n\n")
             time.sleep(self.num_threads / self.max_requests_per_second)
 
@@ -116,9 +117,10 @@ class Scraper:
             links = self.get_all_links_on_page(res.text)
             self.filter_links(links, url)
             if url not in self.processed_urls:
-                product = Product.find_product(res.text)
+                product = ProductElkjop.find_product(res.text)
                 if product != None:
-                    self.products.append(product)
+                    self.add_product_to_list(product)
+                    #self.products.append(product)
                 self.processed_urls.append(url)
 
     def add_elem_if_not_in_list(self, lst, elem):
@@ -155,12 +157,16 @@ class Scraper:
             return url
 
     def add_product_to_list(self, new_product):
+        self.productLock.acquire()
+        print(str(os.getpid()) + "Aquired lock")
         product_already_in_products = False
         for product in self.products:
             if new_product.name == product.name and new_product.price == product.price:
                 product_already_in_products = True
         if not product_already_in_products:
             self.products.append(new_product)
+        print(str(os.getpid()) + "Releasing lock")
+        self.productLock.release()
 
     def ignore_url(self, full_url):
         if self.robottxt.can_fetch("*", full_url) and self.url_in_user_search_filter(full_url):
@@ -210,6 +216,7 @@ def start_scraper(base_url, num_threads, max_requests_per_second, subdomains):
     print("Found " + str(len(scraper.broken_urls)) + " broken urls  (includes urls not starting with https or /)")
     print("Found " + str(len(scraper.local_urls)) + " local urls")
     print("Found " + str(len(scraper.products)) + " products")
+    print(scraper.foreign_urls)
     timestr = time.strftime("%Y%m%d-%H%M%S")
     with open('products'+'_'+timestr+'.csv', 'w', encoding="utf-8") as file:
         file.write("name;brand;price\n")
